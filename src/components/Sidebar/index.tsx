@@ -65,7 +65,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       {/* <!-- SIDEBAR HEADER --> */}
       <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
         <NavLink to="/">
-          <img src={Logo} alt="Logo" />
+          <h1 className="text-3xl font-bold text-white">ChargeAssist</h1>
         </NavLink>
 
         <button
@@ -224,7 +224,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               {/* <!-- Menu Item Calendar --> */}
 
               {/* <!-- Menu Item Profile --> */}
-              <li>
+              {/* <li>
                 <NavLink
                   to="/profile"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
@@ -250,7 +250,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   </svg>
                   Profile
                 </NavLink>
-              </li>
+              </li> */}
               {/* <!-- Menu Item Profile --> */}
 
               {/* <!-- Menu Item Forms --> */}
@@ -395,7 +395,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                       </clipPath>
                     </defs>
                   </svg>
-                  Tables
+                  Chargers
                 </NavLink>
               </li>
               {/* <!-- Menu Item Tables --> */}
