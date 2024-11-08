@@ -29,11 +29,13 @@ module.exports = {
           ...colors.red,
           DEFAULT: '#FB5454',
         },
+        // body dark
         body: '#64748B',
         bodydark: '#AEB7C0',
         bodydark1: '#DEE4EE',
         bodydark2: '#8A99AF',
-        primary: '#3C50E0',
+        // hange tellow
+        primary: '#c4a900',
         secondary: '#80CAEE',
         stroke: '#E2E8F0',
         gray: {
@@ -45,8 +47,10 @@ module.exports = {
         graydark: '#333A48',
         whiten: '#F1F5F9',
         whiter: '#F5F7FD',
-        boxdark: '#24303F',
-        'boxdark-2': '#1A222C',
+        //  box dark
+        // background
+        boxdark: '#241f1f',
+        'boxdark-2': '#151414',
         strokedark: '#2E3A47',
         'form-strokedark': '#3d4d60',
         'form-input': '#1d2a39',

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Breadcrumb from '../components/Breadcrumbs/Breadcrumb';
+import MapImage from 'src/images/logo/map.png'; // Add this line
 
 interface Job {
   id: number;
@@ -17,6 +18,17 @@ interface CalendarDay {
 }
 
 const Calendar: React.FC = () => {
+
+  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 640);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
   // Dummy data for jobs
   const initialJobs: Job[] = [
     {
@@ -174,25 +186,32 @@ const Calendar: React.FC = () => {
           <table className="min-w-full divide-y divide-stroke dark:divide-strokedark">
             <thead>
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 dark:text-gray-300">
+                {/* Charger Model - Always visible */}
+                <th className="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 dark:text-gray-300">
                   EV Charger Model
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 dark:text-gray-300">
+                {/* Location - Hidden on mobile */}
+                <th className="hidden px-2 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 dark:text-gray-300 sm:table-cell">
                   Location
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 dark:text-gray-300">
+                {/* Status - Hidden on mobile */}
+                <th className="hidden px-2 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 dark:text-gray-300 sm:table-cell">
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 dark:text-gray-300">
+                {/* Priority - Hidden on mobile */}
+                <th className="hidden px-2 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 dark:text-gray-300 md:table-cell">
                   Priority
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 dark:text-gray-300">
+                {/* Date - Hidden on mobile */}
+                <th className="hidden px-2 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 dark:text-gray-300 lg:table-cell">
                   Date
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 dark:text-gray-300">
+                {/* Time - Hidden on mobile */}
+                <th className="hidden px-2 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 dark:text-gray-300 xl:table-cell">
                   Time
                 </th>
-                <th className="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider text-gray-700 dark:text-gray-300">
+                {/* Actions - Always visible */}
+                <th className="px-2 py-3 text-center text-xs font-medium uppercase tracking-wider text-gray-700 dark:text-gray-300">
                   Actions
                 </th>
               </tr>
@@ -200,29 +219,36 @@ const Calendar: React.FC = () => {
             <tbody className="bg-white dark:bg-boxdark">
               {availableJobs.map((job) => (
                 <tr key={job.id} className="hover:bg-gray-50 dark:hover:bg-meta-4">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                  {/* Charger Model - Always visible */}
+                  <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                     {job.model}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                  {/* Location - Hidden on mobile */}
+                  <td className="hidden px-2 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white sm:table-cell">
                     {job.location}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                  {/* Status - Hidden on mobile */}
+                  <td className="hidden px-2 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white sm:table-cell">
                     {job.status}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                  {/* Priority - Hidden on mobile */}
+                  <td className="hidden px-2 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white md:table-cell">
                     {job.priority}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                  {/* Date - Hidden on mobile */}
+                  <td className="hidden px-2 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white lg:table-cell">
                     {new Date(job.date).toLocaleDateString('en-US', {
                       year: 'numeric',
                       month: 'short',
                       day: 'numeric',
                     })}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                  {/* Time - Hidden on mobile */}
+                  <td className="hidden px-2 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white xl:table-cell">
                     {job.time}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                  {/* Actions - Always visible */}
+                  <td className="px-2 py-4 whitespace-nowrap text-center text-sm font-medium">
                     <button
                       onClick={() => handleApprove(job.id)}
                       className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
@@ -243,6 +269,7 @@ const Calendar: React.FC = () => {
           </table>
         </div>
       </div>
+
       {/* ====== Available Jobs Table Section End ====== */}
 
       {/* ====== Accepted Jobs Table Section Start ====== */}
@@ -313,7 +340,7 @@ const Calendar: React.FC = () => {
       {/* ====== Accepted Jobs Table Section End ====== */}
 
       {/* ====== Calendar Section Start ====== */}
-      <div className="w-full max-w-full rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+      <div className="w-full max-w-full rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark overflow-x-auto">
         <table className="w-full">
           <thead>
             <tr className="grid grid-cols-7 rounded-t-sm bg-primary text-white">
@@ -321,9 +348,11 @@ const Calendar: React.FC = () => {
                 (day, index) => (
                   <th
                     key={index}
-                    className={`flex h-15 items-center justify-center p-1 text-xs font-semibold sm:text-base xl:p-5 ${
-                      index === 0 ? 'rounded-tl-sm' : index === 6 ? 'rounded-tr-sm' : ''
-                    }`}
+                    className={`flex h-15 items-center justify-center p-1 text-xs font-semibold sm:text-base xl:p-5 
+                      bg-[#c4a900] 
+                      ${
+                        index === 0 ? 'rounded-tl-sm' : index === 6 ? 'rounded-tr-sm' : ''
+                      }`}
                   >
                     <span className="hidden lg:block"> {day} </span>
                     <span className="block lg:hidden"> {day.slice(0, 3)} </span>
@@ -350,16 +379,32 @@ const Calendar: React.FC = () => {
                     {/* Display jobs for this day */}
                     {day.isCurrentMonth &&
                       day.date !== 0 &&
-                      getJobsForDay(day.date).map((job) => (
-                        <div
-                          key={job.id}
-                          className="mt-1 p-1 bg-green-100 dark:bg-meta-4 rounded text-xs text-green-700 dark:text-green-300"
-                        >
-                          <span className="font-semibold">{job.model}</span>
-                          <br />
-                          <span className="text-xs">{job.location}</span>
-                        </div>
-                      ))}
+                      (() => {
+                        const jobsForDay = getJobsForDay(day.date);
+
+                        if (isMobile || jobsForDay.length > 1) {
+                          // Display the number of jobs
+                          if (jobsForDay.length >= 1) {
+                            return (
+                              <div className="mt-1 p-1 bg-green-100 dark:bg-meta-4 rounded text-xs text-green-700 dark:text-green-300">
+                                <span className="font-semibold">{jobsForDay.length}</span>
+                              </div>
+                            );
+                          }
+                        } else if (jobsForDay.length === 1) {
+                          // Display job details
+                          const job = jobsForDay[0];
+                          return (
+                            <div
+                              key={job.id}
+                              className="mt-1 p-1 bg-green-100 dark:bg-meta-4 rounded text-xs text-green-700 dark:text-green-300"
+                            >
+                              <span className="font-semibold">{job.model}</span>
+                            </div>
+                          );
+                        }
+                        return null;
+                      })()}
                   </td>
                 ))}
               </tr>
@@ -418,9 +463,12 @@ const Calendar: React.FC = () => {
               {/* Dummy Map */}
               <div className="mb-4">
                 <h4 className="text-md font-semibold text-black dark:text-white mb-2">Optimal Route:</h4>
-                <div className="w-full h-64 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                  {/* Replace this div with an actual map integration if needed */}
-                  <span className="text-gray-500 dark:text-gray-300">[Dummy Map Placeholder]</span>
+                {/* <div className="w-full h-64 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                  <img src='src/images/logo/mapChargAssist.png' alt="Map" className="w-full h-full object-cover"
+                  />
+                </div> */}
+                <div className="w-full h-64 bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden">
+                  <img src='src/images/logo/charge.png' alt="Map" className="w-full h-full object-cover" />
                 </div>
               </div>
 

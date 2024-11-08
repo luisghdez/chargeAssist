@@ -215,7 +215,8 @@ const TableOne = () => {
       {/* Table */}
       <div className="rounded-md border border-stroke bg-white shadow-md dark:border-gray-700 dark:bg-gray-800 overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-          <thead className="bg-gray-100 dark:bg-gray-900">
+          {/* !!! */}
+          <thead className="bg-[#c4a900]">
             <tr>
               {/* Table Headers */}
               <th
@@ -256,12 +257,12 @@ const TableOne = () => {
               </th>
             </tr>
           </thead>
-          <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+          <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-900">
             {data.map((item, index) => (
               <tr
                 key={index}
                 className={`hover:bg-gray-50 dark:hover:bg-gray-700 ${
-                  index % 2 === 0 ? 'bg-white dark:bg-gray-800' : 'bg-gray-50 dark:bg-gray-700'
+                  index % 2 === 0 ? 'bg-white dark:bg-[#241f1f]' : 'bg-gray-50 dark:bg-[#282525]'
                 }`}
               >
                 <td className="px-6 py-4 whitespace-nowrap">

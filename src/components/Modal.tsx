@@ -42,8 +42,8 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, onSubmit }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-11/12 max-w-md">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#282525] bg-opacity-80">
+      <div className="bg-white dark:bg-[#241f1f] rounded-lg shadow-lg w-11/12 max-w-md">
         <div className="flex justify-between items-center p-4 border-b dark:border-gray-700">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
             Schedule Service
@@ -77,7 +77,7 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, onSubmit }) => {
               onChange={(e) => setPriorityTime(e.target.value)}
               required
               step="1800" // 30 minutes
-              className="mt-1 p-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+              className="mt-1 p-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-[#282525] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
             />
           </div>
 
@@ -93,7 +93,7 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, onSubmit }) => {
               onChange={(e) => setOption2Time(e.target.value)}
               required
               step="1800" // 30 minutes
-              className="mt-1 p-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+              className="mt-1 p-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-[#282525] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
             />
           </div>
 
